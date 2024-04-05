@@ -1,0 +1,179 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User API",
+    "version": "1.0.0",
+    "description": "Microservice User API"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9100"
+    }
+  ],
+  "apis": [
+    "C:\\Users\\deida\\Downloads\\user-service-master\\user-service-curso-v2\\src\\**\\**\\*.ts"
+  ],
+  "paths": {
+    "/users/": {
+      "get": {
+        "description": "Get all Users",
+        "tags": [
+          "Users"
+        ],
+        "responses": {
+          "200": {
+            "description": "All Users",
+            "content": {
+              "appication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserTO"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "description": "Insert users",
+        "tags": [
+          "Users"
+        ],
+        "requestBody": {
+          "description": "object user",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UserTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "All Users",
+            "content": {
+              "application/json": {
+                "example": {
+                  "status": 200,
+                  "message": "Users"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error bad parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorTo"
+                }
+              }
+            }
+          }
+        }
+      },
+      "components": {
+        "schemas": {
+          "UserTO": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "example": "rjaforever"
+              },
+              "email": {
+                "type": "string",
+                "example": "rjaforever@gmail.com"
+              }
+            }
+          },
+          "ErrorTO": {
+            "type": "object",
+            "properties": {
+              "error": {
+                "type": "string",
+                "example": "Invalid parameters"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ping/": {
+      "get": {
+        "description": "Test service",
+        "tags": [
+          "Ping"
+        ],
+        "responses": {
+          "200": {
+            "description": "Pong",
+            "content": {
+              "appication/json": {
+                "example": {
+                  "status": 200,
+                  "message": "pong"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "UserTO": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "rjaforever"
+          },
+          "email": {
+            "type": "string",
+            "example": "rjaforever@gmail.com",
+            "message": "Users"
+          }
+        }
+      },
+      "ErrorTo": {
+        "type": "object",
+        "properties": {
+          "errorCode": {
+            "type": "string",
+            "description": "Código de error de negocio",
+            "example": 10
+          },
+          "errorMessage": {
+            "type": "string",
+            "description": "Error de sistema",
+            "example": "Null pointer"
+          },
+          "userError": {
+            "type": "string",
+            "description": "Human readable error",
+            "example": "No se encontró información"
+          },
+          "info": {
+            "type": "string",
+            "description": "Información sobre solución del error",
+            "example": "http://info.com"
+          }
+        }
+      }
+    }
+  },
+  "tags": []
+}
